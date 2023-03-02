@@ -36,13 +36,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-detox-build
 
-      - name: Patch build
-        run: |
-          # https://wix.github.io/Detox/docs/troubleshooting/running-tests/#if-you-do-see-your-app-running-on-the-device
-          sed -i '' 's/<application/<application android:usesCleartextTraffic="true"/' android/app/src/main/AndroidManifest.xml
-          # https://github.com/facebook/react-native/issues/36207#issuecomment-1435838521
-          sed -i '' 's/android {/android { testBuildType "release"/' android/app/build.gradle
-
       - name: Detox build
         run: yarn detox build --configuration ${{ env.DETOX_CONFIGURATION }}
 
@@ -53,6 +46,7 @@ jobs:
       - name: Detox test
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          api-level: 31
           avd-name: ${{ steps.device.outputs.AVD_NAME }}
           script: yarn detox test --configuration ${{ env.DETOX_CONFIGURATION }} --cleanup --headless --record-logs all
 
