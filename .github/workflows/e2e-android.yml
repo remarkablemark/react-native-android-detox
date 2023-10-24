@@ -5,6 +5,8 @@ jobs:
   e2e-android:
     runs-on: macos-latest
     env:
+      API_LEVEL: 33
+      ARCH: x86_64
       DETOX_CONFIGURATION: android.emu.release
 
     steps:
@@ -27,6 +29,29 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Gradle cache
+        uses: gradle/gradle-build-action@v2
+
+      - name: AVD cache
+        uses: actions/cache@v3
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ env.API_LEVEL }}
+
+      - name: Create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ env.API_LEVEL }}
+          arch: ${{ env.ARCH }}
+          disable-animations: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          force-avd-creation: false
+          script: echo 'Generated AVD snapshot for caching.'
+
       - name: Cache Detox build
         id: cache-detox-build
         uses: actions/cache@v3
@@ -46,9 +71,12 @@ jobs:
       - name: Detox test
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          arch: x86_64
+          api-level: ${{ env.API_LEVEL }}
+          arch: ${{ env.ARCH }}
           avd-name: ${{ steps.device.outputs.AVD_NAME }}
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          force-avd-creation: false
           script: yarn detox test --configuration ${{ env.DETOX_CONFIGURATION }} --headless --record-logs all --take-screenshots failing
 
       - name: Upload artifacts
