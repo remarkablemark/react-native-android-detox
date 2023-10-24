@@ -5,8 +5,9 @@ jobs:
   e2e-android:
     runs-on: macos-latest
     env:
-      DETOX_CONFIGURATION: android.emu.release
       API_LEVEL: 33
+      ARCH: x86_64
+      DETOX_CONFIGURATION: android.emu.release
 
     steps:
       - name: Checkout repository
@@ -45,6 +46,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ env.API_LEVEL }}
+          arch: ${{ env.ARCH }}
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           force-avd-creation: false
@@ -70,7 +72,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ env.API_LEVEL }}
-          arch: x86_64
+          arch: ${{ env.ARCH }}
           avd-name: ${{ steps.device.outputs.AVD_NAME }}
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
