@@ -33,7 +33,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: AVD cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: avd-cache
         with:
           path: |
@@ -54,7 +54,7 @@ jobs:
 
       - name: Cache Detox build
         id: cache-detox-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: android/app/build
           key: ${{ runner.os }}-detox-build
