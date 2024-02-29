@@ -84,7 +84,6 @@ jobs:
             yarn detox test
             --configuration ${{ env.DETOX_CONFIGURATION }}
             --headless
-            --if-missing
             --record-logs failing
             --record-videos failing
             --take-screenshots failing
