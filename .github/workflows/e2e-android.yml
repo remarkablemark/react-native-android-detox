@@ -62,7 +62,10 @@ jobs:
             ${{ runner.os }}-detox-build
 
       - name: Detox build
-        run: yarn detox build --configuration ${{ env.DETOX_CONFIGURATION }}
+        run: >
+          yarn detox build
+          --configuration ${{ env.DETOX_CONFIGURATION }}
+          --if-missing
 
       - name: Get device name
         id: device
@@ -77,7 +80,14 @@ jobs:
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           force-avd-creation: false
-          script: yarn detox test --configuration ${{ env.DETOX_CONFIGURATION }} --headless --record-logs all --take-screenshots failing
+          script: >
+            yarn detox test
+            --configuration ${{ env.DETOX_CONFIGURATION }}
+            --headless
+            --if-missing
+            --record-logs failing
+            --record-videos failing
+            --take-screenshots failing
 
       - name: Upload artifacts
         if: failure()
