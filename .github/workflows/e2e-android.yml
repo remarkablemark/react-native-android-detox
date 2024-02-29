@@ -100,3 +100,4 @@ jobs:
         with:
           name: detox-artifacts
           path: artifacts
+          retention-days: 14
