@@ -1,3 +1,5 @@
+const { name } = require('./package.json');
+
 /** @type {Detox.DetoxConfig} */
 module.exports = {
   testRunner: {
@@ -12,36 +14,33 @@ module.exports = {
   apps: {
     'ios.debug': {
       type: 'ios.app',
-      binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/YOUR_APP.app',
-      build:
-        'xcodebuild -workspace ios/YOUR_APP.xcworkspace -scheme YOUR_APP -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build',
+      binaryPath: `ios/build/Build/Products/Debug-iphonesimulator/${name}.app`,
+      build: `xcodebuild -workspace ios/${name}.xcworkspace -scheme ${name} -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build`,
     },
     'ios.release': {
       type: 'ios.app',
-      binaryPath:
-        'ios/build/Build/Products/Release-iphonesimulator/YOUR_APP.app',
-      build:
-        'xcodebuild -workspace ios/YOUR_APP.xcworkspace -scheme YOUR_APP -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
+      binaryPath: `ios/build/Build/Products/Release-iphonesimulator/${name}.app`,
+      build: `xcodebuild -workspace ios/${name}.xcworkspace -scheme ${name} -configuration Release -sdk iphonesimulator -derivedDataPath ios/build`,
     },
     'android.debug': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
       build:
-        'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug',
+        'cd android ; ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug ; cd -',
       reversePorts: [8081],
     },
     'android.release': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
       build:
-        'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release',
+        'cd android ; ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release ; cd -',
     },
   },
   devices: {
     simulator: {
       type: 'ios.simulator',
       device: {
-        type: 'iPhone 12',
+        type: 'iPhone SE (3rd generation)',
       },
     },
     attached: {
