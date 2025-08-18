@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
-    "@babel/runtime": "^7.28.2",
+    "@babel/runtime": "^7.28.3",
     "@react-native-community/eslint-config": "^3.2.0",
     "babel-jest": "^30.0.5",
     "detox": "^20.16.0",
