@@ -1185,10 +1185,10 @@
     jest-haste-map "^29.7.0"
     slash "^3.0.0"
 
-"@jest/transform@30.5.1":
-  version "30.5.1"
-  resolved "https://registry.yarnpkg.com/@jest/transform/-/transform-30.5.1.tgz#563895f9cb60bc490c3addde758e78f3dd9dc321"
-  integrity sha512-EDnDhn0jleU9ZhpVoA4gvqw+Ev0iw/r5upNT2b79RiwiaTiYAMMhvNJP3lmocjIe5J2ZkoNr0B3K/J6O5GIm4Q==
+"@jest/transform@30.5.2":
+  version "30.5.2"
+  resolved "https://registry.yarnpkg.com/@jest/transform/-/transform-30.5.2.tgz#3b4a7d43b3ba4ee1926cfcca8e271eb47d65a5d6"
+  integrity sha512-LBGwmaE886C41jDZ65eqR1YbXM7642MK3ZhTowZd5+xDlrDLuf4ePuDdDmVSvcr8NTVJ3MqxLkMbUCzuigUaoQ==
   dependencies:
     "@babel/core" "^7.27.4"
     "@jest/types" "30.5.1"
@@ -2211,12 +2211,12 @@ babel-jest@^29.7.0:
     graceful-fs "^4.2.9"
     slash "^3.0.0"
 
-babel-jest@^30.5.1:
-  version "30.5.1"
-  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-30.5.1.tgz#b20da241e3d525e17a1cda61eadbc2e13230baeb"
-  integrity sha512-ge1xUVZS91ml09YRMgRGgeKJ4YJpcOiuwteAxFBYLugQyp7cRw+hHej6Ho0vPjvLrjq60bb7JPHH9LAMA1/krA==
+babel-jest@^30.5.2:
+  version "30.5.2"
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-30.5.2.tgz#ee4b3b265baf9dad68e6275bc813ef35d1736e6d"
+  integrity sha512-ES8WeJ2fNWPEDunyAtUfJ12nHyaWUloCHdkfK2oW5uSoQSUmjNKdWiGaXJITJwvFEWoD/evHEg/QoCXAvLaQqQ==
   dependencies:
-    "@jest/transform" "30.5.1"
+    "@jest/transform" "30.5.2"
     "@types/babel__core" "^7.20.5"
     babel-plugin-istanbul "^8.0.0"
     babel-preset-jest "30.5.0"
